@@ -22,22 +22,21 @@ public class Databasemanager extends Main {
         pstmt.executeUpdate();
     }
 
-    public void selectAll() {
+    public void selectAll(String uidx) {
         ResultSet rs = null;
         String NameF;
         int result;
 
         try {
             Statement stmt = con.createStatement();
-            rs = stmt.executeQuery("SELECT * FROM employee where uid = 830;");
+
+            rs = stmt.executeQuery(String.format("SELECT * FROM employee where uid = %s ;", uidx.trim()));
 
             while(rs.next()) {
 
                 result = rs.getInt("uid");
                 NameF = rs.getString("name");
-                System.out.printf("%s",NameF);
 
-                System.out.printf("\n%s",result);
                 this.NameF = NameF;
                 this.result = result;
 
